@@ -36,7 +36,7 @@ def ship_ai(ship, info, game_map):
             
             
             #reverse and change angle
-            if keep_sailing or info["t"]>0.2*400:
+            if keep_sailing and info["t"]<0.3*400:
                 ship.set_heading(((ship.heading+180)%360 + np.random.normal(loc=0,scale=15))%360)
             else:
                 ship.convert_to_base()
@@ -75,7 +75,7 @@ class PlayerAi:
             ["tank", "mine", "ship"],  cycle=True
         )
         self.build_queue_warrior = helpers.BuildQueue(
-            ["jet", "mine"],  cycle=True
+            ["mine","jet", "mine"],  cycle=True
         )
         self.build_queue_sailor = helpers.BuildQueue(
             ["ship"],  cycle=True
@@ -123,7 +123,7 @@ class PlayerAi:
                     print("Adding another ship though I'm at war")
                     obj = self.build_queue_sailor(base)
                 else:
-                    print("Yay, jets")
+                    #print("Yay, jets")
                     obj = self.build_queue_warrior(base)
                     
 
