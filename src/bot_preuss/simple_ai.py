@@ -11,7 +11,7 @@ def tank_ai(tank, info, game_map):
     """
     if not tank.stopped:
         if tank.stuck:
-            tank.set_heading(np.random.random() * 360.0)
+            tank.set_heading(np.random.rand() * 360.0)
         elif "target" in info:
             tank.goto(*info["target"])
 
@@ -96,7 +96,7 @@ class PlayerAi:
 
         # Iterate through all my bases and process build queue
         for base in myinfo["bases"]:
-            if (len(myinfo["bases"]) < 2) and (np.random.random()<.25):
+            if (len(myinfo["bases"]) < 2) and (np.random.rand()<.25):
                 obj = self.build_queue_sailor(base)
                 continue
 
@@ -114,12 +114,12 @@ class PlayerAi:
 
             elif self.bases_status[base.uid] == "settler":
                 obj = self.build_queue_settler(base)
-                if np.random.random() < (t)/400:
+                if np.random.rand() < (t)/400:
                     print("Time for war")
                     self.bases_status[base.uid] = "warrior"
 
             elif self.bases_status[base.uid] == "warrior":
-                if np.random.random() < 0.02:
+                if np.random.rand() < 0.02:
                     print("Adding another ship though I'm at war")
                     obj = self.build_queue_sailor(base)
                 else:
