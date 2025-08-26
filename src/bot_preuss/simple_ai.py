@@ -119,7 +119,8 @@ class PlayerAi:
                     self.bases_status[base.uid] = "warrior"
 
             elif self.bases_status[base.uid] == "warrior":
-                if np.random.random() < 0.1:
+                if np.random.random() < 0.02:
+                    print("Adding another ship though I'm at war")
                     obj = self.build_queue_sailor(base)
                 else:
                     obj = self.build_queue_warrior(base)
