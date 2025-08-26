@@ -28,7 +28,7 @@ def ship_ai(ship, info, game_map):
             for base in info["bases"]:
                 print("Checking Base", base.x,base.y)
                 if ship.get_distance(base.x,base.y)<40:
-                    print("Too close to home")
+                    print("Too close to home: ", ship.get_distance(base.x, base.y))
                     keep_sailing = True
                     break
         
@@ -39,6 +39,7 @@ def ship_ai(ship, info, game_map):
             if keep_sailing and info["t"]<0.3*400:
                 ship.set_heading(((ship.heading+180)%360 + np.random.normal(loc=0,scale=15))%360)
             else:
+                print("Let's settle here")
                 ship.convert_to_base()
       
 
