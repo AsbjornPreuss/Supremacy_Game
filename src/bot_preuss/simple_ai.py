@@ -27,7 +27,7 @@ def ship_ai(ship, info, game_map):
             print("Ship stuck")
             for base in info["bases"]:
                 print("Checking Base", base.x,base.y)
-                if ship.get_distance(base.x,base.y)<60:
+                if ship.get_distance(base.x,base.y)<40:
                     print("Too close to home")
                     keep_sailing = True
                     break
@@ -36,7 +36,7 @@ def ship_ai(ship, info, game_map):
             
             
             #reverse and change angle
-            if keep_sailing or info["t"]>0.5*400:
+            if keep_sailing or info["t"]>0.2*400:
                 ship.set_heading(((ship.heading+180)%360 + np.random.normal(loc=0,scale=15))%360)
             else:
                 ship.convert_to_base()
@@ -123,6 +123,7 @@ class PlayerAi:
                     print("Adding another ship though I'm at war")
                     obj = self.build_queue_sailor(base)
                 else:
+                    print("Yay, jets")
                     obj = self.build_queue_warrior(base)
                     
 
