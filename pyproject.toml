@@ -1,0 +1,64 @@
+[project]
+name = "bot_preuss"
+description = "AI for Supremacy"
+authors = [{ name = "Neil Vaytet" }, { name = "Jan-Lukas Wynen" }]
+version = "1.0"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.12"
+
+# Add dependencies here that your bot needs to run.
+dependencies = [
+    "numpy",
+]
+
+[dependency-groups]
+# Add dependencies here that you need for development
+# but not for running the tournament.
+dev = [
+
+]
+
+[build-system]
+requires = [
+    "setuptools>=77",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = """
+--strict-config
+--strict-markers
+--import-mode=importlib
+-ra
+-v
+"""
+testpaths = "tests"
+filterwarnings = [
+    "error",
+]
+
+[tool.ruff]
+line-length = 88
+extend-exclude = [
+    ".*", "__pycache__", "build", "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "I", "W"]
+ignore = [
+    "E741", "E742", "E743", # do not use names ‘l’, ‘O’, or ‘I’; they are not a problem with a proper font
+    # Conflict with ruff format, see
+    # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "COM812", "COM819", "D206", "D300", "E111", "E114", "E117", "ISC001", "ISC002", "Q000", "Q001", "Q002", "Q003", "W191",
+]
+fixable = ["B010", "I001", "PT001", "RUF022"]
+isort.known-first-party = "bot_preuss"
+pydocstyle.convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # asserts are fine in tests
+    "S324", # insecure hsh function; we don't use hashing for security
+]
