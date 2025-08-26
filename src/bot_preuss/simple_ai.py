@@ -72,7 +72,7 @@ class PlayerAi:
             ["mine", "tank", "ship"],  cycle=True
         )
         self.build_queue_settler = helpers.BuildQueue(
-            ["tank", "ship"],  cycle=True
+            ["tank", "mine", "ship"],  cycle=True
         )
         self.build_queue_warrior = helpers.BuildQueue(
             ["jet", "mine"],  cycle=True
