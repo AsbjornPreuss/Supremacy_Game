@@ -36,7 +36,7 @@ def ship_ai(ship, info, game_map):
             
             
             #reverse and change angle
-            if keep_sailing:
+            if keep_sailing or info["t"]>0.5*400:
                 ship.set_heading(((ship.heading+180)%360 + np.random.normal(loc=0,scale=15))%360)
             else:
                 ship.convert_to_base()
@@ -92,7 +92,7 @@ class PlayerAi:
 
         # Get information about my team
         myinfo = info[self.team]
-        
+        myinfo["t"] = t
 
         # Iterate through all my bases and process build queue
         for base in myinfo["bases"]:
