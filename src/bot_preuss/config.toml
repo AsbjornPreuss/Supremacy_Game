@@ -1,4 +1,4 @@
 name = "preuss"
-color = "#000000"
+color = "#BADA55"
 class_name = "PlayerAi"
 id = "bot_preuss"
